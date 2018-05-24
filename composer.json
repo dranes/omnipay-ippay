@@ -1,0 +1,39 @@
+{
+    "name": "dranes/omnipay-ippay",
+    "type": "library",
+    "description": "IPpay driver for the Omnipay payment processing library",
+    "keywords": [
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment",
+        "ippay"
+    ],
+    "homepage": "https://github.com/dranes/omnipay-ippay",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andres Garcia",
+            "email": "andresgarcia@gmail.com"
+        },
+        {
+            "name": "Omnipay Contributors",
+            "homepage": "https://github.com/dranes/omnipay-ippay/contributors"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Omnipay\\Ippay\\" : "src/" }
+    },
+    "require": {
+        "omnipay/common": "~2.0"
+    },
+    "require-dev": {
+        "omnipay/tests": "~2.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
+    }
+}
