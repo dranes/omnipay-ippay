@@ -25,6 +25,16 @@ class Gateway extends AbstractGateway
     }
 
     /**
+     * set gateway terminal id
+     *
+     * @return string
+     */
+    public function setTerminalId($value)
+    {
+        return $this->setParameter('terminal_id', $value);
+    }
+
+    /**
      * Purchase Request
      *
      * After create a Bank Account or a Credit Card you can charge a client

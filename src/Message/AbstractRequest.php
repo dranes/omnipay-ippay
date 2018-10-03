@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\Paysimple\Message;
+namespace Omnipay\Ippay\Message;
 
 use Guzzle\Http\Exception\ClientErrorResponseException;
 
@@ -13,6 +13,11 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function getTerminalId()
     {
         return $this->getParameter('terminal_id');
+    }
+
+    public function setTerminalId($value)
+    {
+        return $this->setParameter('terminal_id', $value);
     }
 
     public function getHeaders()
@@ -30,6 +35,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             $xml .= "<{$node}>{$value}</{$node}>";
         }
 
+        $xml .= "<TerminalID>" . $this->getTerminalId() . "</TerminalID>";
         $xml = "<ippay>" . $xml . "</ippay>";
         
         $headers = array_merge(
@@ -51,6 +57,12 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         );
  
         return (new Response($this, $httpResponse->getBody()->getContents()));
+    }
+
+    public function getEndpoint()
+    {
+        $endpoint = $this->getTestMode() ? $this->sandboxEndpoint : $this->productionEndpoint;
+        return  $endpoint;
     }
 
     public function getHttpMethod()
