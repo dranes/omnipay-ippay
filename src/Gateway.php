@@ -46,7 +46,7 @@ class Gateway extends AbstractGateway
      */
     public function purchase(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Paysimple\Message\PurchaseRequest', $parameters);
+        return $this->createRequest('\Omnipay\Ippay\Message\PurchaseRequest', $parameters);
     }
 
     /**
@@ -61,45 +61,5 @@ class Gateway extends AbstractGateway
     public function createCard(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\Ippay\Message\CreateCardRequest', $parameters);
-    }
-
-    /**
-     * Void Request
-     *
-     * Any succesfully authorized payment that has not yet been submitted
-     * as part of and end-of-day batch can be voided.
-     *
-     * @param  array|array $parameters
-     * @return \Omnipay\Paysimple\Message\Response
-     */
-    public function void(array $parameters = array())
-    {
-        return $this->createRequest('\Omnipay\Paysimple\Message\VoidRequest', $parameters);
-    }
-
-    /**
-     * Refund Request
-     *
-     * Any Settled payment can be refunded.
-     *
-     * @param  array|array $parameters
-     * @return \Omnipay\Paysimple\Message\Response
-     */
-    public function refund(array $parameters = array())
-    {
-        return $this->createRequest('\Omnipay\Paysimple\Message\RefundRequest', $parameters);
-    }
-
-    /**
-     * Retrieve Payment
-     *
-     * Single Payment Objects
-     *
-     * @param  array|array $parameters
-     * @return \Omnipay\Paysimple\Message\Response
-     */
-    public function retrievePayment(array $parameters = array())
-    {
-        return $this->createRequest('\Omnipay\Paysimple\Message\RetrievePayment', $parameters);
     }
 }

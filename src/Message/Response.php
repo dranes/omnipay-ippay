@@ -34,7 +34,8 @@ class Response implements \Omnipay\Common\Message\ResponseInterface
     
     public function getMessage()
     {
-        return $this->response;
+        $response = new \SimpleXMLElement($this->response);
+        return $response->ResponseText;
     }
     
     public function getCode()
@@ -44,7 +45,6 @@ class Response implements \Omnipay\Common\Message\ResponseInterface
 
     public function getTransactionReference()
     {
-        $this->response->getBody()->rewind();
         $response = new \SimpleXMLElement($this->response);
         return $response->TransactionID;
     }

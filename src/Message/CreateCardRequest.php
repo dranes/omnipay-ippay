@@ -11,7 +11,6 @@ class CreateCardRequest extends AbstractRequest
 
         $data = array();
         $data['TransactionType'] = 'TOKENIZE';
-
         $data['CardExpMonth'] = $this->getCard()->getExpiryDate('m');
         $data['CardExpYear'] = $this->getCard()->getExpiryDate('y');
         $data['CardNum'] = $this->getCard()->getNumber();
