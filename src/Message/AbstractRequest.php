@@ -8,7 +8,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
 
     protected $sandboxEndpoint = "https://testgtwy.ippay.com/ippay";
-    protected $productionEndpoint = "";
+    protected $productionEndpoint = "https://gtwy.ippay.com/ippay";
 
     public function getTerminalId()
     {
