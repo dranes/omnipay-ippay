@@ -30,13 +30,12 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function send()
     {
         $data = $this->getData();
-        $xml = null;
-        foreach($data as $node => $value) {
-            $xml .= "<{$node}>{$value}</{$node}>";
+        
+        if($data['TransactionType'] == 'CHECK') {
+            $xml = $this->dataCheck($data);
+        } else {
+            $xml = $this->dataSale($data);
         }
-
-        $xml .= "<TerminalID>" . $this->getTerminalId() . "</TerminalID>";
-        $xml = "<ippay>" . $xml . "</ippay>";
         
         $headers = array_merge(
             $this->getHeaders(),
@@ -44,6 +43,36 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         );
 
         return $this->sendData($xml, $headers);
+    }
+
+    public function dataCheck($data)
+    {
+        $xml = '';
+        $xml .= "<TransactionType>CHECK</TransactionType>";
+        $xml .= "<TerminalID>" . $this->getTerminalId() . "</TerminalID>";
+        $xml .= "<CardName>" . $data['BankName'] . "</CardName>";
+        $xml .= "<TotalAmount>" . $data['TotalAmount'] . "</TotalAmount>";
+        $xml .= "<ACH Type='" . $data['Type'] . "' SEC='" . $data['SEC'] . "'>";
+            $xml .= "<Token>" . $data['Token'] . "</Token>";
+            $xml .= "<CheckNumber>" . $data['CheckNumber'] . "</CheckNumber>";
+        $xml .= "</ACH>";
+        $xml = "<ippay>" . $xml . "</ippay>";
+
+        return $xml;
+    }
+
+    public function dataSale($data)
+    {
+        
+        $xml = null;
+        foreach($data as $node => $value) {
+            $xml .= "<{$node}>{$value}</{$node}>";
+        }
+
+        $xml .= "<TerminalID>" . $this->getTerminalId() . "</TerminalID>";
+        $xml = "<ippay>" . $xml . "</ippay>";
+
+        return $xml;
     }
 
     public function sendData($data, array $headers = [])
@@ -55,7 +84,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             $headers,
             $data
         );
- 
+        
         return (new Response($this, $httpResponse->getBody()->getContents()));
     }
 

@@ -42,7 +42,7 @@ class Gateway extends AbstractGateway
      * the Bank Account method or the Credit Card method.
      *
      * @param  array|array $parameters
-     * @return \Omnipay\Paysimple\Message\Response
+     * @return \Omnipay\Ippay\Message\Response
      */
     public function purchase(array $parameters = array())
     {
@@ -53,13 +53,23 @@ class Gateway extends AbstractGateway
      * Create Credit Card Request
      *
      * Create a Credit Card and associate with a customer it's important
-     * to save the transaction reference to ue it later on purchase request.
+     * to save the transaction reference to use it later on purchase request.
      *
      * @param  array|array $parameters
-     * @return \Omnipay\Paysimple\Message\Response
+     * @return \Omnipay\Ippay\Message\Response
      */
     public function createCard(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\Ippay\Message\CreateCardRequest', $parameters);
+    }
+
+    /**
+     * Create Bank Account Request
+     * 
+     */
+
+    public function createBankAccount(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Ippay\Message\CreateBankAccountRequest', $parameters);
     }
 }
