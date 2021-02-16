@@ -72,4 +72,14 @@ class Gateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\Ippay\Message\CreateBankAccountRequest', $parameters);
     }
+
+    /**
+     * Card Validation Request
+     * 
+     */
+
+    public function validateCard(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Ippay\Message\CardValidationRequest', $parameters);
+    }
 }
