@@ -64,6 +64,16 @@ class AchPurchaseRequest extends AbstractRequest
     {
         return $this->setParameter('transaction_type', $value);
     }
+
+    public function getBankName()
+    {
+        return $this->getParameter('name');
+    }
+
+    public function setBankName($value)
+    {
+        return $this->setParameter('name', $value);
+    }
     
     public function getData()
     {
@@ -76,6 +86,7 @@ class AchPurchaseRequest extends AbstractRequest
         $data['CheckNumber'] = $this->getCheckNumber();
         $data['Token'] = $this->getToken();
         $data['Type'] = $this->getType();
+        $data['BankName'] = $this->getBankName();
 
         return $data;
     }
