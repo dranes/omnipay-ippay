@@ -74,6 +74,16 @@ class PurchaseRequest extends AbstractRequest
     {
         return $this->setParameter('bank_name', $value);
     }
+
+    public function getUserHost()
+    {
+        return $this->getParameter('user_host');
+    }
+
+    public function setUserHost($value)
+    {
+        return $this->setParameter('user_host', $value);
+    }
     
     public function getData()
     {
@@ -87,6 +97,7 @@ class PurchaseRequest extends AbstractRequest
         $data['CheckNumber'] = $this->getCheckNumber();
         $data['Type'] = $this->getType();
         $data['BankName'] = $this->getBankName();
+        $data['UserHost'] = $this->getUserHost();
         
         return $data;
     }
