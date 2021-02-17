@@ -56,6 +56,12 @@ class Response implements \Omnipay\Common\Message\ResponseInterface
         return $response->TransactionID;
     }
 
+    public function getToken()
+    {
+        $response = new \SimpleXMLElement($this->response);
+        return $response->Token;
+    }
+
     public function getData()
     {
         return $this->request->getData();
