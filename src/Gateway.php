@@ -87,4 +87,13 @@ class Gateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\Ippay\Message\CardValidationRequest', $parameters);
     }
+
+    /**
+     * Ping Request
+     * 
+     */
+    public function ping(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Ippay\Message\PingRequest', $parameters);
+    }
 }

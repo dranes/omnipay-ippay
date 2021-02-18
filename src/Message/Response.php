@@ -33,12 +33,6 @@ class Response implements \Omnipay\Common\Message\ResponseInterface
     {
         return false;
     }
-
-    public function wrongCredentials()
-    {
-        $message = (string)(new \SimpleXMLElement($this->getMessage()))->ErrMsg;
-        return trim($message) === self::WRONG_CREDENTIALS_MESSAGE;
-    }
     
     public function getMessage()
     {
