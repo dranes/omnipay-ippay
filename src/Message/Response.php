@@ -4,6 +4,8 @@ namespace Omnipay\Ippay\Message;
 
 class Response implements \Omnipay\Common\Message\ResponseInterface
 {
+    const WRONG_CREDENTIALS_MESSAGE = 'Cannot determine the URL for the processor.';
+
     public function __construct($request, $response)
     {
         $this->request = $request;
@@ -46,6 +48,12 @@ class Response implements \Omnipay\Common\Message\ResponseInterface
     {
         $response = new \SimpleXMLElement($this->response);
         return $response->TransactionID;
+    }
+
+    public function getToken()
+    {
+        $response = new \SimpleXMLElement($this->response);
+        return $response->Token;
     }
 
     public function getData()

@@ -49,6 +49,11 @@ class Gateway extends AbstractGateway
         return $this->createRequest('\Omnipay\Ippay\Message\PurchaseRequest', $parameters);
     }
 
+    public function achPurchase(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Ippay\Message\AchPurchaseRequest', $parameters);
+    }
+
     /**
      * Create Credit Card Request
      *
@@ -71,5 +76,24 @@ class Gateway extends AbstractGateway
     public function createBankAccount(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\Ippay\Message\CreateBankAccountRequest', $parameters);
+    }
+
+    /**
+     * Card Validation Request
+     * 
+     */
+
+    public function validateCard(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Ippay\Message\CardValidationRequest', $parameters);
+    }
+
+    /**
+     * Ping Request
+     * 
+     */
+    public function ping(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Ippay\Message\PingRequest', $parameters);
     }
 }

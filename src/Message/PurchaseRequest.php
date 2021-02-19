@@ -25,36 +25,6 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('amount', $value);
     }
 
-    public function getSEC()
-    {
-        return $this->getParameter('sec');
-    }
-
-    public function setSEC($value)
-    {
-        return $this->setParameter('sec', $value);
-    }
-
-    public function getType()
-    {
-        return $this->getParameter('type');
-    }
-
-    public function setType($value)
-    {
-        return $this->setParameter('type', $value);
-    }
-
-    public function getCheckNumber()
-    {
-        return $this->getParameter('check_number');
-    }
-
-    public function setCheckNumber($value)
-    {
-        return $this->setParameter('check_number', $value);
-    }
-
     public function getTransactionType()
     {
         return $this->getParameter('transaction_type');
@@ -65,14 +35,14 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('transaction_type', $value);
     }
 
-    public function getBankName()
+    public function getUserHost()
     {
-        return $this->getParameter('bank_name');
+        return $this->getParameter('user_host');
     }
 
-    public function setBankName($value)
+    public function setUserHost($value)
     {
-        return $this->setParameter('bank_name', $value);
+        return $this->setParameter('user_host', $value);
     }
     
     public function getData()
@@ -83,10 +53,7 @@ class PurchaseRequest extends AbstractRequest
         $data['TransactionType'] = $this->getTransactionType();
         $data['Token'] = $this->getToken();
         $data['TotalAmount'] = number_format($this->getAmount(), 2, "", "");
-        $data['SEC'] = $this->getSEC();
-        $data['CheckNumber'] = $this->getCheckNumber();
-        $data['Type'] = $this->getType();
-        $data['BankName'] = $this->getBankName();
+        $data['UserHost'] = $this->getUserHost();
         
         return $data;
     }
